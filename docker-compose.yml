@@ -1,0 +1,20 @@
+services:
+  db:
+    container_name: postgres_db
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql   # postgres przy pierwszym tworzeniu wolumenu bazy danych uruchamia wszystkie pliki .sql z katalogu /docker-entrypoint-initdb.d/
+
+  app:
+    container_name: express_server
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
