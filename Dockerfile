@@ -9,11 +9,11 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x scripts/entrypoint.sh
 
 EXPOSE 3000
 
 # Zawsze uruchomi się jako pierwszy
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./scripts/entrypoint.sh"]
 
-CMD ["node", "app.js"]
+CMD ["node", "src/app.js"]
